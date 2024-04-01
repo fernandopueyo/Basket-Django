@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Est. Ind.{% endblock %}
+
+{% block content %}
+{% if faltan_estadisticas %}
+   <h4 class="font-bold text-l text-gray-600 mt-12">No hay estadísticas disponibles en este momento.</h4>
+   <p class="text-base leading-relaxed xl:w-2/4 lg:w-2/4 text-gray-500s">Para añadir estadisticas presione <a class="font-medium text-green-700" href="{% url 'statistics:statistics'%}">aqui</a>.</p>
+{% else %}
+   <h4 class="font-bold text-l text-gray-600 mt-12">Todos los partidos</h4>
+   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mb-12">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+               <th scope="col" class="px-4 py-3 text-left">Partido</th>
+               <th scope="col" class="px-2 py-3 text-center">W/L</th>
+               <th scope="col" class="px-2 py-3 text-center">MIN</th>
+               <th scope="col" class="px-2 py-3 text-center">FGM</th>
+               <th scope="col" class="px-2 py-3 text-center">FGA</th>
+               <th scope="col" class="px-2 py-3 text-center">FG%</th>
+               <th scope="col" class="px-2 py-3 text-center">3PM</th>
+               <th scope="col" class="px-2 py-3 text-center">3PA</th>
+               <th scope="col" class="px-2 py-3 text-center">3P%</th>
+               <th scope="col" class="px-2 py-3 text-center">FTM</th>
+               <th scope="col" class="px-2 py-3 text-center">FTA</th>
+               <th scope="col" class="px-2 py-3 text-center">FT%</th>
+               <th scope="col" class="px-2 py-3 text-center">REB</th>
+               <th scope="col" class="px-2 py-3 text-center">AST</th>
+               <th scope="col" class="px-2 py-3 text-center">STL</th>
+               <th scope="col" class="px-2 py-3 text-center">BLK</th>
+               <th scope="col" class="px-2 py-3 text-center">TO</th>
+               <th scope="col" class="px-2 py-3 text-center">PF</th>
+               <th scope="col" class="px-2 py-3 text-center">PTS</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for estadistica in estadisticas %}
+            <tr class="bg-white border-b hover:bg-gray-50">
+               <th scope="row" class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap text-left">{{ estadistica.id_game.equipo_local }} vs. {{ estadistica.id_game.equipo_visitante }}, 
+                  <strong>{{ estadistica.id_game.resultado_local }} - {{ estadistica.id_game.resultado_visitante }}</strong></td>
+               <td class="px-2 py-2 text-center">
+                  {% if estadistica.win %}
+                        <strong><span style="color: green;">W</span></strong>
+                  {% elif estadistica.win != True %}
+                        <strong><span style="color: red;">L</span></strong>
+                  {% else %}
+                        {{ win_lose }}
+                  {% endif %}
+               </td>
+               <td class="px-2 py-2 text-center">{{ estadistica.mins }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.fgm }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.fga }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.fgperc|floatformat:1 }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.threepm }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.threepa }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.threepperc|floatformat:1 }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.ftm }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.fta }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.ftperc|floatformat:1 }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.reb }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.ast }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.stl }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.blk }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.turnover }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.pf }}</td>
+               <td class="px-2 py-2 text-center">{{ estadistica.pts }}</td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+   <h4 class="font-bold text-l text-gray-600 mt-8">Promedio</h4>
+   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mb-12">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+               <th scope="col" class="px-6 py-3 text-left">Estadísticas</th>
+               <th scope="col" class="px-4 py-3 text-center">MIN</th>
+               <th scope="col" class="px-4 py-3 text-center">FGM</th>
+               <th scope="col" class="px-4 py-3 text-center">FGA</th>
+               <th scope="col" class="px-4 py-3 text-center">FG%</th>
+               <th scope="col" class="px-4 py-3 text-center">3PM</th>
+               <th scope="col" class="px-4 py-3 text-center">3PA</th>
+               <th scope="col" class="px-4 py-3 text-center">3P%</th>
+               <th scope="col" class="px-4 py-3 text-center">FTM</th>
+               <th scope="col" class="px-4 py-3 text-center">FTA</th>
+               <th scope="col" class="px-4 py-3 text-center">FT%</th>
+               <th scope="col" class="px-4 py-3 text-center">REB</th>
+               <th scope="col" class="px-4 py-3 text-center">AST</th>
+               <th scope="col" class="px-4 py-3 text-center">STL</th>
+               <th scope="col" class="px-4 py-3 text-center">BLK</th>
+               <th scope="col" class="px-4 py-3 text-center">TO</th>
+               <th scope="col" class="px-4 py-3 text-center">PF</th>
+               <th scope="col" class="px-4 py-3 text-center">PTS</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="bg-white border-b hover:bg-gray-50">
+               <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap text-left"><strong>Total</strong></td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.mins|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.fgm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.fga|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.fgperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.threepm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.threepa|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.threepperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.ftm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.fta|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.ftperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.reb|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.ast|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.stl|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.blk|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.turnover|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.pf|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias.pts|floatformat:1 }}</td>
+            </tr>
+            <tr class="bg-white border-b hover:bg-gray-50">
+               <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap text-left"><strong>Victoria</strong></td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.mins|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.fgm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.fga|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.fgperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.threepm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.threepa|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.threepperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.ftm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.fta|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.ftperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.reb|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.ast|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.stl|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.blk|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.turnover|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.pf|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_victoria.pts|floatformat:1 }}</td>
+            </tr>
+            <tr class="bg-white border-b hover:bg-gray-50">
+               <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap text-left"><strong>Derrota</strong></td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.mins|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.fgm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.fga|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.fgperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.threepm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.threepa|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.threepperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.ftm|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.fta|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.ftperc|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.reb|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.ast|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.stl|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.blk|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.turnover|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.pf|floatformat:1 }}</td>
+               <td class="px-4 py-2 text-center">{{ estadisticas_medias_derrota.pts|floatformat:1 }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   {% if faltan_tiros %}
+      <h4 class="font-bold text-l text-gray-600 mt-12">No hay estadísticas de tiro disponibles en este momento.</h4>
+      <p class="text-base leading-relaxed xl:w-2/4 lg:w-2/4 text-gray-500s">Para añadir estadisticas de tiro presione <a class="font-medium text-green-700" href="{% url 'statistics:statistics'%}">aqui</a> y utilice las gráficas de tiro.</p>
+   {% else %}
+      <h4 class="font-bold text-l text-gray-600 mt-8">Shot plot</h4>
+      <div class="grid grid-cols-3 gap-4 mt-4 mb-20">
+         <div class="col-span-1">{{ div2| safe }}</div>
+         <div class="col-span-1">{{ div1| safe }}</div>
+         <div class="col-span-1">
+            <form class="space-y-4 flex-col" method="post">
+               {% csrf_token %}
+               
+               <div class="mb-4">
+                  <label for="{{ form.win.id_for_label }}" class="block text-sm font-medium text-gray-700">Win/Lose</label>
+                  <select id="{{ form.win.id_for_label }}" name="{{ form.win.name }}" class="mt-1 p-2 border rounded-md">
+                     {% for value, label in form.win.field.choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                     {% endfor %}
+                  </select>
+               </div>
+               
+               <div class="mb-4">
+                  <label for="{{ form.made.id_for_label }}" class="block text-sm font-medium text-gray-700">Anotado/Fallado</label>
+                  <select id="{{ form.made.id_for_label }}" name="{{ form.made.name }}" class="mt-1 p-2 border rounded-md">
+                     {% for value, label in form.made.field.choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                     {% endfor %}
+                  </select>
+               </div>
+               <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800">Filtrar</button>
+            </form>
+         </div>
+      </div>
+   {% endif %}
+{% endif %}
+{% endblock %}

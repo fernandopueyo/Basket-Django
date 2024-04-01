@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Estadisticas{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center mt-12">
+    <h2 class="mb-2 text-lg font-semibold text-gray-900">Jornadas:</h2>
+    <ol class="w-2/4 space-y-1 text-green-900 list-decimal list-inside mt-4">
+    {% for partido in partidos %}
+        <li>
+            <span class="font-semibold text-gray-900">{{ partido.fecha_partido }}</span>: 
+            <a class="font-medium text-green-700" href="{% url 'statistics:statistics_game' partido.id_game %}">{{ partido.equipo_local }} vs. {{ partido.equipo_visitante }}</a>
+        </li>
+    {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}

@@ -1,0 +1,209 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    color: #333;
+}
+
+/* Estilo para la barra de navegación */
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #585858;
+}
+
+header nav li {
+    float: left;
+}
+
+header nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+header nav li a:hover {
+    background-color: #313131;
+}
+
+.active {
+    background-color: #2e43a1;
+}
+
+/* Contenedores FBCV */
+.box_jornada {
+    display: flex;
+    width: inherit;
+    flex-wrap: wrap;
+}
+
+.cabecera_jornada {
+    color: #525e92;
+    font-size: 24px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.wrap-partido {
+    box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+    padding: 2em 2em 1em;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.grid-partidos {
+    display: grid;
+    margin-bottom: 0.5em;
+    grid-template-columns: 1fr .5fr .5fr 1fr;
+    align-items: center;
+}
+
+.grid_footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: .5em;
+}
+
+.grid_footer .item {
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+
+.item.equipo {
+    font-size: 16px;
+    font-weight: 300;
+    color: #525252;
+}
+
+.item.numero {
+    font-family: orbitron,sans-serif;
+    font-size: 24px;
+    color: #535f90;
+}
+
+.grid-partidos .item {
+    text-align: center;
+}
+
+/* Estilos para el filtro */
+form {
+    margin-bottom: 20px; /* Espacio entre el filtro y el contenido */
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px #333;
+    text-align: center;
+}
+
+input[type="submit"] {
+    background-color: #033f7e;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;    
+    box-shadow: 0 2px 6px #333;
+}
+
+/* Estilo cuando el cursor está sobre el botón de envío */
+input[type="submit"]:hover {
+    background-color: #022d5c;
+}
+
+/*  Botones de inicio y autentificación */
+
+a .boton-inicio {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 999; /* Para estar por encima de otros elementos */
+}
+
+a .css-button-rounded--grey-inicio {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #495057;
+    background: #495057;
+  }
+  .css-button-rounded--grey:hover {
+    background: #fff;
+    color: #495057
+  }
+
+a .css-button-rounded--grey-admin {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #495057;
+    background: #495057;
+  }
+  .css-button-rounded--grey:hover {
+    background: #fff;
+    color: #495057
+  }

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Clasificación{% endblock %}
+
+{% block content %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-16">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-0 py-0"></th>
+                <th scope="col" class="px-6 py-3 text-left">Equipo</th>
+                <th scope="col" class="px-6 py-3 text-center">Jugados</th>
+                <th scope="col" class="px-6 py-3 text-center">Ganados</th>
+                <th scope="col" class="px-6 py-3 text-center">Perdidos</th>
+                <th scope="col" class="px-6 py-3 text-center">P.F.</th>
+                <th scope="col" class="px-6 py-3 text-center">P.C.</th>
+                <th scope="col" class="px-6 py-3 text-center">Puntos</th>
+                <th scope="col" class="px-6 py-3 text-center">Racha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clasificado in clasificacion %}
+            <tr class="bg-white border-b hover:bg-gray-50">
+                <th scope="row" class="px-0 py-4 font-medium text-gray-900 whitespace-nowrap text-right">{{ clasificado.posicion }}</td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-left">{{ clasificado.id_team.name }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.jugados }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.ganados }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.perdidos }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.puntos_favor }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.puntos_contra }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.puntos }}</td>
+                <td class="px-6 py-4 text-center">{{ clasificado.racha }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

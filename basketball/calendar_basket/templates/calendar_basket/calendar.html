@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Calendario{% endblock %}
+
+{% block content %}
+<div class="flex w-3/4 justify-between mx-auto mb-8 mt-12">
+    <form method="get" action="" class="flex space-x-4 items-center">
+        <div>
+            {{ form.equipo }}
+        </div>
+        <div>
+            {{ form.jornada }}
+        </div>
+        <input type="submit" value="Filtrar" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-800">
+    </form>
+</div>
+{% for jornada, partidos in calendario_por_jornada.items %}
+    <div class="flex w-3/4 flex-wrap mx-auto mt-4">
+        <div class="text-green-600 text-xl mb-4 mt-4 text-center font-bold">
+            <b>Jornada {{ jornada }}</b>
+        </div>
+        {% for partido in partidos %}
+            <div class="shadow-lg p-4 mb-4 w-full">
+                <div class="grid mb-2 grid-cols-4 items-center">
+                    <div class="text-center text-gray-700 text-lg font-light">{{ partido.equipo_local }}</div>
+                    <div class="text-center text-green-700 text-3xl font-bold">{{ partido.resultado_local }}</div>
+                    <div class="text-center text-green-700 text-3xl font-bold">{{ partido.resultado_visitante }}</div>
+                    <div class="text-center text-gray-700 text-lg font-light">{{ partido.equipo_visitante }}</div>
+                </div>
+                <div class="grid p-2 grid-cols-1">
+                    <div class="text-center font-bold tracking-widest text-lg">{{ partido.fecha_partido }}</div>
+                </div>
+            </div>
+        {% endfor %}                
+    </div>
+{% endfor %}
+{% endblock %}

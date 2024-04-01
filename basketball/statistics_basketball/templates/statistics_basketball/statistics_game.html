@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Estadisticas{% endblock %}
+
+{% block content %}
+<div class="bg-white border border-gray-300 rounded shadow-md p-5 text-lg mb-12 mt-5 w-auto mx-auto">
+    <p class="text-center font-semibold tracking-widest text-sm">{{ partido.fecha_partido }}</p>
+    <p class="text-center font-bold text-2xl text-gray-600 my-2">{{ partido.equipo_local }}</p>
+    <p class="text-center font-mono text-2xl text-green-700">{{ partido.resultado_local }}</p>
+    <p class="text-center font-mono text-2xl text-green-700">{{ partido.resultado_visitante }}</p>
+    <p class="text-center font-bold text-2xl text-gray-600 my-2">{{ partido.equipo_visitante }}</p>
+</div>
+
+<h2 class="font-bold text-2xl text-gray-600">{{ partido.equipo_local  }}<small class="ms-2 font-semibold text-gray-500">
+    {% if player.id_team.id_team == partido.id_equipo_local %}
+        <a class="partido" href="{% url 'statistics:shot_plot' partido.id_game %}">Añadir estadísticas</a>
+    {% endif %}
+</small>
+</h2>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8 mb-12">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left">Jugador</th>
+                <th scope="col" class="px-4 py-3 text-center">MIN</th>
+                <th scope="col" class="px-4 py-3 text-center">FGM</th>
+                <th scope="col" class="px-4 py-3 text-center">FGA</th>
+                <th scope="col" class="px-4 py-3 text-center">FG%</th>
+                <th scope="col" class="px-4 py-3 text-center">3PM</th>
+                <th scope="col" class="px-4 py-3 text-center">3PA</th>
+                <th scope="col" class="px-4 py-3 text-center">3P%</th>
+                <th scope="col" class="px-4 py-3 text-center">FTM</th>
+                <th scope="col" class="px-4 py-3 text-center">FTA</th>
+                <th scope="col" class="px-4 py-3 text-center">FT%</th>
+                <th scope="col" class="px-4 py-3 text-center">REB</th>
+                <th scope="col" class="px-4 py-3 text-center">AST</th>
+                <th scope="col" class="px-4 py-3 text-center">STL</th>
+                <th scope="col" class="px-4 py-3 text-center">BLK</th>
+                <th scope="col" class="px-4 py-3 text-center">TO</th>
+                <th scope="col" class="px-4 py-3 text-center">PF</th>
+                <th scope="col" class="px-4 py-3 text-center">PTS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estadistica in estadisticas_local %}
+            <tr class="bg-white border-b hover:bg-gray-50">
+                <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap text-left">{{ estadistica.id_player.first_name }}, #{{ estadistica.id_player.dorsal }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.mins }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fgm }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fga }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fgperc|floatformat:0 }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.threepm }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.threepa }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.threepperc|floatformat:0 }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.ftm }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fta }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.ftperc|floatformat:0 }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.reb }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.ast }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.stl }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.blk }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.turnover }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.pf }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.pts }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h2 class="font-bold text-2xl text-gray-600">{{  partido.equipo_visitante  }}<small class="ms-2 font-semibold text-gray-500">
+    {% if player.id_team.id_team == partido.id_equipo_visitante %}
+        <a class="partido" href="{% url 'statistics:shot_plot' partido.id_game %}">Añadir estadísticas</a>
+    {% endif %}
+</small>
+</h2>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left">Jugador</th>
+                <th scope="col" class="px-4 py-3 text-center">MIN</th>
+                <th scope="col" class="px-4 py-3 text-center">FGM</th>
+                <th scope="col" class="px-4 py-3 text-center">FGA</th>
+                <th scope="col" class="px-4 py-3 text-center">FG%</th>
+                <th scope="col" class="px-4 py-3 text-center">3PM</th>
+                <th scope="col" class="px-4 py-3 text-center">3PA</th>
+                <th scope="col" class="px-4 py-3 text-center">3P%</th>
+                <th scope="col" class="px-4 py-3 text-center">FTM</th>
+                <th scope="col" class="px-4 py-3 text-center">FTA</th>
+                <th scope="col" class="px-4 py-3 text-center">FT%</th>
+                <th scope="col" class="px-4 py-3 text-center">REB</th>
+                <th scope="col" class="px-4 py-3 text-center">AST</th>
+                <th scope="col" class="px-4 py-3 text-center">STL</th>
+                <th scope="col" class="px-4 py-3 text-center">BLK</th>
+                <th scope="col" class="px-4 py-3 text-center">TO</th>
+                <th scope="col" class="px-4 py-3 text-center">PF</th>
+                <th scope="col" class="px-4 py-3 text-center">PTS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estadistica in estadisticas_visitante %}
+            <tr class="bg-white border-b hover:bg-gray-50">
+                <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap text-left">{{ estadistica.id_player.first_name }}, #{{ estadistica.id_player.dorsal }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.mins }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fgm }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fga }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fgperc|floatformat:0 }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.threepm }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.threepa }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.threepperc|floatformat:0 }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.ftm }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.fta }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.ftperc|floatformat:0 }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.reb }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.ast }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.stl }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.blk }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.turnover }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.pf }}</td>
+                <td class="px-4 py-2 text-center">{{ estadistica.pts }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

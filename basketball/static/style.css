@@ -1,0 +1,411 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    min-width: 640px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.container_perfil {
+    width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    color: #333;
+}
+
+/* Contenedores FBCV */
+.box_jornada {
+    display: flex;
+    width: inherit;
+    flex-wrap: wrap;
+}
+
+.cabecera_jornada {
+    color: #059669;
+    font-size: 24px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.wrap-partido {
+    box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+    padding: 2em 2em 1em;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.grid-partidos {
+    display: grid;
+    margin-bottom: 0.5em;
+    grid-template-columns: 1fr .5fr .5fr 1fr;
+    align-items: center;
+}
+
+.grid_footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: .5em;
+}
+
+.grid_footer .item {
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+
+.item.equipo {
+    font-size: 16px;
+    font-weight: 300;
+    color: #525252;
+}
+
+.item.numero {
+    font-family: orbitron,sans-serif;
+    font-size: 24px;
+    color: #047857;
+}
+
+.grid-partidos .item {
+    text-align: center;
+}
+
+/* Estilos para el filtro */
+form {
+    margin-bottom: 20px; /* Espacio entre el filtro y el contenido */
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px #333;
+    text-align: center;
+}
+
+input[type="submit"] {
+    background-color: #065f46;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;    
+    box-shadow: 0 2px 6px #333;
+}
+
+/* Estilo cuando el cursor está sobre el botón de envío */
+input[type="submit"]:hover {
+    background-color: #064e3b;
+}
+
+/* Estilo para las tablas */
+table {
+    border-collapse: collapse;
+    width:100%;
+    margin-bottom: 20px;
+    background-color: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    box-shadow: 0 2px 6px #ccc;
+    font-size: 16px; 
+}
+
+table thead {
+    color: #525252;
+}
+
+table tbody {
+    font-size: 0.75rem;
+}
+
+th, td {
+    width: 40px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;     
+    background-color: #fff; 
+}
+
+th.player, td.player {
+    width: 200px;
+    text-align: left;
+    border: 1px solid #ccc;     
+    background-color: #fff; 
+}
+
+/* Estilos para la barra de navegación */
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #064e3b;
+}
+
+header nav li {
+    float: left;
+}
+
+header nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+header nav li a:hover {
+    background-color: #022c22;
+}
+
+.active {
+    background-color: #10b981;
+}
+
+
+/* Desplegable */
+/* Estilos para el contenedor del menú */
+.dropdown {
+    position: fixed;
+    top: 0;
+    right: 200px;
+}
+
+/* Estilos para el botón desplegable */
+.dropdown-toggle {
+    background-color: #064e3b;
+    color: white;
+    padding: 14px 16px;
+    cursor: pointer;
+}
+
+/* Estilos para el contenido del menú desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Estilos para los enlaces dentro del menú */
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Estilo al pasar el ratón sobre los enlaces */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Mostrar el menú cuando el botón se hace hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Estilo para formato de registro, login, etc */
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para el botón de registro e inicio de sesión */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #065f46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #064e3b;
+}
+
+/* Estilo para los enlaces de inicio de sesión o registro */
+a.signup-link,
+a.login-link {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    color: #007bff;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+    color: #d9534f;
+}
+
+/* Estilo para los mensajes de éxito */
+.success-message {
+    color: #5bc0de;
+}
+
+/* Estilo para los botones de email */
+button[name="action_primary"] {
+    display: block;
+    width: 30%;
+    padding: 10px;
+    background-color: #065f46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button[name="action_send"] {
+    display: block;
+    width: 40%;
+    padding: 10px;
+    background-color: #065f46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[name="action_remove"] {
+    display: block;
+    width: 20%;
+    padding: 10px;
+    background-color: #065f46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.container_botones_email {
+    display: flex;
+    width: inherit;
+    flex-wrap: wrap;
+}
+
+/* Estilos para el form del perfil */
+#form_profile {
+    margin-bottom: 10px; 
+}
+
+label {
+    display: block; 
+    margin-bottom: 5px; 
+}
+
+input[type="number"] {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select[name="id_team"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none;
+    text-align: left;
+    margin: 10px 0;
+}
+
+button[name="perfil_boton"] {
+    margin-top: 10px;
+}
+
+
+/* Estilos para la lista de estadisticas */
+li.estadisticas {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.jornada {
+    font-weight: bold;
+}
+
+
+/* Estilo para los links */
+a.partido{
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+
+a:link.partido {
+    color: #265301;
+}
+
+a:visited.partido {
+    color: #437a16;
+}
+
+a:focus.partido {
+    border-bottom: 1px solid;
+    background: #bae498;
+}
+
+a:hover.partido {
+    border-bottom: 1px solid;
+    background: #cdfeaa;
+}
+
+a:active.partido {
+    background: #265301;
+    color: #cdfeaa;
+}
+
+/* Estilo para el link de button */
+a.button {
+    text-decoration: none;
+    color: inherit;
+}

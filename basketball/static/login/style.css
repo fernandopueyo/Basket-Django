@@ -1,0 +1,42 @@
+/* Estilo para centrar verticalmente el formulario */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#login-form {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los botones de color azul */
+input[type="submit"] {
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #022d5c;
+}
+
+/* Estilo para el enlace de "Lost password?" */
+a {
+    text-decoration: none;
+    color: #0074d9;
+}
+
+/* Cambiar el color del enlace cuando se pasa el cursor sobre él */
+a:hover {
+    color: #0056b3;
+}
